@@ -1,0 +1,22 @@
+---
+Language:     Cpp
+BasedOnStyle: google
+ColumnLimit:  140
+IndentWidth:  4
+SortIncludes: true
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterEnum: true
+  AfterClass: true
+  AfterStruct: true
+  BeforeElse: true
+  BeforeCatch: true
+  AfterControlStatement: true
+IncludeCategories:
+  - Regex:           '^<'
+    Priority:        1
+  - Regex:           '^"boost'
+    Priority:        2      
+  - Regex:           '^"'
+    Priority:        3
+
