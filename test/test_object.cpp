@@ -22,7 +22,19 @@ int main()
                     p_t<decltype(text), std::string>
                     >,
                 Label::properties>::value,
-                "Test that derived properites ar exposed too");
+                "Test that derived properites are exposed too");
+
+    static_assert(
+            std::is_same<
+                kvasir::mpl::list<
+                    p_t<decltype(pos), Point>,
+                    p_t<decltype(size), Size>,
+                    p_t<decltype(text), std::string>,
+                    p_t<decltype(stroke), Color>
+                    >,
+                ColoredLabel::properties>::value,
+                "Test that derived properites are exposed too");
+
 
 
     return 0;
