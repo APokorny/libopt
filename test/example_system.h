@@ -40,3 +40,6 @@ using ColoredLabel = decltype(opt::derived_from<Label>( //
             opt::property<Color>(stroke)  ///
             ));
 
+using ClickReaction = decltype(opt::basic( //
+            opt::method<void(Point const& pos, int button_state)>("on_click"_p)));
+

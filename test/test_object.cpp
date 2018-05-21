@@ -2,6 +2,8 @@
 
 template<typename T, typename Name>
 using p_t = opt::detail::property<T, Name>;
+template<typename Sig, typename Name>
+using m_t = opt::detail::method<Sig, Name>;
 
 int main()
 {
@@ -35,7 +37,13 @@ int main()
                 ColoredLabel::properties>::value,
                 "Test that derived properites are exposed too");
 
-
+    static_assert(
+            std::is_same<
+                kvasir::mpl::list<
+                    m_t<decltype("on_click"_p), void(Point const& pos, int button_state)>
+                    >,
+                ClickReaction::methods>::value,
+                "Test that methods are exposed too");
 
     return 0;
 }
