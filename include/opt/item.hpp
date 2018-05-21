@@ -3,8 +3,10 @@
 
 namespace opt {
 
+template <typename ObjectType, typename... Elements>
+struct node;
 template<typename ItemType, typename...Elements>
-auto item(Elements&&... args) noexcept {
+constexpr auto item(Elements&&... args) noexcept {
     return node<ItemType, Elements...>{std::forward<Elements>(args)...};
 }
 

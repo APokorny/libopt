@@ -6,6 +6,10 @@
 namespace opt {
 namespace km = kvasir::mpl;
 
+template <typename ObjectType, typename... Elements>
+struct node;
+template<typename ItemType, typename...Elements>
+constexpr node<ItemType, Elements...> item(Elements&&... args) noexcept;
 template <typename ...Elements>
 struct object;
 template <typename ...Elements>
@@ -20,6 +24,11 @@ struct object
                >
            >, Elements...>;
     using methods = km::call<km::flatten<km::cfe<opt::object>, km::filter<detail::is_method, km::listify>>, Elements...>;
+
+    template<typename...Inits>
+    constexpr auto
+    operator()(Inits &&... is)  noexcept -> decltype(item<object<Elements...>>(std::forward<Inits>(is)...))
+    { return item<object<Elements...>>(std::forward<Inits>(is)...);}
 };
 
 template <typename Signature, typename Name>
